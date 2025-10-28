@@ -10,6 +10,7 @@ function getTable(config) {
 	let counter = config.counter || 0;
 	const opt = config.opt || 0;
 	const basedir = config.root + "IridiumFlares/";
+	let options;
 	if (counter === 0) {
 		options = utils.get_options("IridiumFlares.aspx?");
 		if (!fs.existsSync(basedir)) {
@@ -83,7 +84,7 @@ function getTable(config) {
 			});
 			next += "&ctl00$cph1$visible=radioVisible";
 			next = next.replace(/\+/g, "%2B").replace(/\//g, "%2F") //.replace(/\$/g, "%24");
-				if (counter++ < config.pages) {
+			if (counter++ < config.pages) {
 				getTable({
 					count: config.count,
 					pages: config.pages,
