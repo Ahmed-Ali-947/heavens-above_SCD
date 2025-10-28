@@ -150,6 +150,7 @@ function getTable(config) {
 				database = database.map((ele, _index) => {
 					if (isNaN(ele[property[6]][1])) {
 						ele[property[8]] = 0;
+						_index = 0;
 						return ele;
 					} //上中天没有星等直接归零
 					if (ele[property[6]][0] >= 17 && ele[property[6]][0] <= 19) {
