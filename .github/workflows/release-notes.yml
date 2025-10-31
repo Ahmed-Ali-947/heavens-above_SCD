@@ -1,0 +1,39 @@
+name: Release Notes Generator
+
+on:
+  push:
+    tags:
+      - 'v*'   # Triggers on version tags like v1.0.0, v1.1.2 etc.
+
+permissions:
+  contents: write
+
+jobs:
+  generate-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate changelog from commits
+        id: changelog
+        run: |
+          echo "### 📝 Release Notes" > release-notes.md
+          echo "" >> release-notes.md
+          git log -10 --pretty=format:"- %s (%h)" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "Generated automatically on $(date)" >> release-notes.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release-notes.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release notes as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes
+          path: release-notes.md
