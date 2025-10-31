@@ -1,4 +1,5 @@
 site_name: Heavens Above Automation Documentation
+site_url: https://ahmed-ali-947.github.io/heavens-above_SCD/
 nav:
   - Manual: manual.md
   - Workflows: workflow.md
