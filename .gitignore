@@ -88,3 +88,6 @@ dist/
 .DS_Store
 
 public/data
+
+# Ignore MkDocs output
+/site/
