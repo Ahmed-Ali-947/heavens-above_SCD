@@ -1,0 +1,6 @@
+site_name: Heavens Above Automation Documentation
+nav:
+  - Manual: manual.md
+  - Workflows: workflow.md
+theme:
+  name: material
